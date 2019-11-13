@@ -11,22 +11,31 @@
 
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Question</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.Post.Content, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(m => m.Post.Content, new { @class = "form-control", id = "txt-content" })
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+<div class="form-horizontal">
+    <h4>Question</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Post.Title, new { @class = "col-md-2 control-label" })
+        <div class="col">
+            @Html.TextBoxFor(m => m.Post.Title, new { @class = "form-control" })
         </div>
     </div>
+</div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Post.Content, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Post.Content, new { @class = "form-control"})
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

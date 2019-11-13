@@ -32,6 +32,7 @@ namespace AskMe.Models
     [Column(TypeName = "nvarchar(MAX)")]
     public string Content { get; set; }
     [Required]
+    public string Title { get; set; }
     public DateTime CreatedTime { get; set; }
     [Required]
     public string CreatedById { get; set; }

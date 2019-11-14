@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 
 namespace AskMe.DataAccessLayer
@@ -14,7 +15,7 @@ namespace AskMe.DataAccessLayer
         ApplicationDbContext _context = new ApplicationDbContext();
         public List<Question> GetAllQuestions()
         {
-            return _context.Questions.ToList();
+            return _context.Questions.Include(q=>q.Post).ToList();
         }
 
         public List<Tag> GetAllTags()

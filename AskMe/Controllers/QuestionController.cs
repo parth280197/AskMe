@@ -16,7 +16,7 @@ namespace AskMe.Controllers
         public ActionResult Index()
         {
             var allQuestions = QBL.GetAllQuestions();
-            return View();
+            return View(allQuestions);
         }
 
         public ActionResult CreateQuestion()
@@ -33,7 +33,7 @@ namespace AskMe.Controllers
         public ActionResult CreateQuestion(QuestionCreateViewModel questionViewModel)
         {
             QBL.CreateQuestion(questionViewModel);
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

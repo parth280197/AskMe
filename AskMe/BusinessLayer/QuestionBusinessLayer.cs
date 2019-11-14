@@ -42,8 +42,9 @@ namespace AskMe.BusinessLayer
                 Post = post,
                 Tags = QDL.GetSelectedAllTags(questionViewModel.TagsId),
             };
-            QDL.CreateQuestion(question);
             QDL.CreatePost(post);
+            QDL.CreateQuestion(question);
+            
         }
     }
 }

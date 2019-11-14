@@ -36,6 +36,7 @@ namespace AskMe.DataAccessLayer
         {
             _context.Posts.Add(post);
             _context.SaveChanges();
+            var id = post.PostId;
         }
 
         public void CreateQuestion(Question question)

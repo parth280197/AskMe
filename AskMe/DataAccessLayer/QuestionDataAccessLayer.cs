@@ -46,5 +46,10 @@ namespace AskMe.DataAccessLayer
             _context.SaveChanges();
         }
 
+        public Question GetQuestions(int id)
+        {
+            return _context.Questions.Find(id);
+        }
+
     }
 }

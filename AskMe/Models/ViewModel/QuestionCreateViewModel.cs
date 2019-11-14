@@ -12,6 +12,5 @@ namespace AskMe.Models.ViewModel
     public int[] TagsId { get; set; }
     public string UserId { get; set; }
 
-
   }
 }

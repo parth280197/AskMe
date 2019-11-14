@@ -1,8 +1,10 @@
 ﻿using AskMe.Models;
+using AskMe.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 
 namespace AskMe.DataAccessLayer
@@ -14,5 +16,33 @@ namespace AskMe.DataAccessLayer
         {
             return _context.Questions.ToList();
         }
+
+        public List<Tag> GetAllTags()
+        {
+            return _context.Tags.ToList();
+        }
+        public List<Tag> GetSelectedAllTags(int[] selectedId)
+        {
+            List<Tag> result = new List<Tag>();
+            foreach(var id in selectedId)
+            {
+                var tag = _context.Tags.Find(id);
+                result.Add(tag);
+            }
+            return result;
+        }
+
+        public void CreatePost(Post post)
+        {
+            _context.Posts.Add(post);
+            _context.SaveChanges();
+        }
+
+        public void CreateQuestion(Question question)
+        {
+            _context.Questions.Add(question);
+            _context.SaveChanges();
+        }
+
     }
 }

@@ -1,39 +1,39 @@
 ﻿using AskMe.BusinessLayer;
 using AskMe.Models;
 using AskMe.Models.ViewModel;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace AskMe.Controllers
 {
-  public class QuestionController : Controller
-  {
-    QuestionBusinessLayer QBL = new QuestionBusinessLayer();
-
-    // GET: Question
-    public ActionResult Index()
+    public class QuestionController : Controller
     {
-      var allQuestions = QBL.GetAllQuestions();
-      return View();
-    }
+        QuestionBusinessLayer QBL = new QuestionBusinessLayer();
 
-    public ActionResult CreateQuestion()
-    {
-      QuestionCreateViewModel viewModel = new QuestionCreateViewModel()
-      {
-        Tags = new List<Tag>()
+        // GET: Question
+        public ActionResult Index()
         {
-          new Tag() {Id=1,Name="Tag1"}
+            var allQuestions = QBL.GetAllQuestions();
+            return View();
         }
-      };
-      return View(viewModel);
-    }
-    [HttpPost]
-    [ValidateInput(false)]
-    public ActionResult CreateQuestion(QuestionCreateViewModel question)
-    {
 
-      return View();
+        public ActionResult CreateQuestion()
+        {
+            QuestionCreateViewModel viewModel = new QuestionCreateViewModel()
+            {
+                Tags = QBL.GetAllTags(),
+                UserId= User.Identity.GetUserId(),
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CreateQuestion(QuestionCreateViewModel questionViewModel)
+        {
+            QBL.CreateQuestion(questionViewModel);
+            return View();
+        }
     }
-  }
 }

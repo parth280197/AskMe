@@ -8,6 +8,8 @@ namespace AskMe.Models.ViewModel
     public string Title { get; set; }
     public List<Tag> Tags { get; set; }
     public int[] TagsId { get; set; }
-    public string NewTags { get; set; }
+    public string UserId { get; set; }
+    
+     
   }
 }

@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace AskMe
 {
@@ -24,7 +23,7 @@ namespace AskMe
                 "~/Scripts/bootstrap.js"));
 
       bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.css",
+                "~/Content/bootstrap.min.css",
                 "~/Content/site.css"));
     }
   }

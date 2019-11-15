@@ -37,7 +37,7 @@ namespace AskMe.Models
     public DateTime CreatedTime { get; set; }
     [Required]
     public string CreatedById { get; set; }
-    public User CreatedBy { get; set; }
+    public virtual User CreatedBy { get; set; }
     public int Views { get; set; }
     public virtual ICollection<Votes> Votes { get; set; }
   }

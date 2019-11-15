@@ -4,15 +4,16 @@
     ViewBag.Title = "QuestionDetails";
 }
 
-<h2>Question Details</h2>
-@Model.Question.Post.Title
+<h2>Question Details: </h2>
+<h2>@Model.Question.Post.Title</h2>
 @Html.Raw(Model.Question.Post.Content)
 <hr />
+<h3>Answers:</h3>
 @foreach (var answer in Model.Question.Answers)
 {
     <div class="card bg-light m-1">
         <div class="card-body">
-            <h5 class="card-title">Answer by: @answer.Post.CreatedBy.UserName</h5>
+            <h5 class="card-title">Answered by: @answer.Post.CreatedBy.UserName</h5>
             @Html.Raw(answer.Post.Content)
         </div>
     </div>

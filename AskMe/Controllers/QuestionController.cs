@@ -48,7 +48,7 @@ namespace AskMe.Controllers
     public ActionResult QuestionDetails(QuestionDetailViewModel questionDetailViewModel)
     {
       QBL.CreateAnswer(questionDetailViewModel);
-      return View(questionDetailViewModel);
+      return RedirectToAction("QuestionDetails",new { Id=questionDetailViewModel.QuestionId});
     }
   }
 }

@@ -10,9 +10,9 @@
 <hr />
 @foreach (var answer in Model.Question.Answers)
 {
-    <div class="card bg-light">
+    <div class="card bg-light m-1">
         <div class="card-body">
-            <h5 class="card-title">Answer by: @answer.Post.CreatedBy</h5>
+            <h5 class="card-title">Answer by: @answer.Post.CreatedBy.UserName</h5>
             @Html.Raw(answer.Post.Content)
         </div>
     </div>

@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201911132020281_AddedTitlePropertyInPost.Designer.cs">
       <DependentUpon>201911132020281_AddedTitlePropertyInPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911151718482_TitleCanBeNullInPost.cs" />
+    <Compile Include="Migrations\201911151718482_TitleCanBeNullInPost.Designer.cs">
+      <DependentUpon>201911151718482_TitleCanBeNullInPost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -473,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911132020281_AddedTitlePropertyInPost.resx">
       <DependentUpon>201911132020281_AddedTitlePropertyInPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911151718482_TitleCanBeNullInPost.resx">
+      <DependentUpon>201911151718482_TitleCanBeNullInPost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

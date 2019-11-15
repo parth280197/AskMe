@@ -13,9 +13,9 @@ namespace AskMe.Models
   // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
   public class User : IdentityUser
   {
-        public static object Identity { get; internal set; }
+    public static object Identity { get; internal set; }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+    public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
     {
       // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
       var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -33,7 +33,6 @@ namespace AskMe.Models
     [Required]
     [Column(TypeName = "nvarchar(MAX)")]
     public string Content { get; set; }
-    [Required]
     public string Title { get; set; }
     public DateTime CreatedTime { get; set; }
     [Required]
@@ -52,7 +51,7 @@ namespace AskMe.Models
     }
     [Key, ForeignKey("Post")]
     public int PostId { get; set; }
-    public Post Post { get; set; }
+    public virtual Post Post { get; set; }
     public virtual ICollection<Answer> Answers { get; set; }
     public virtual ICollection<Tag> Tags { get; set; }
   }
@@ -75,12 +74,12 @@ namespace AskMe.Models
     }
     [Key, ForeignKey("Post")]
     public int PostId { get; set; }
-    public Post Post { get; set; }
+    public virtual Post Post { get; set; }
     [Required]
     [ForeignKey("Question")]
     public int QuestionId { get; set; }
-    public Question Question { get; set; }
-    public ICollection<Comment> Comments { get; set; }
+    public virtual Question Question { get; set; }
+    public virtual ICollection<Comment> Comments { get; set; }
   }
   public class Comment
   {

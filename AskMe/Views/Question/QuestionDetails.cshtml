@@ -1,10 +1,47 @@
 ﻿@model AskMe.Models.ViewModel.QuestionDetailViewModel
 
 @{
-    ViewBag.Title = "QuestionDetails";
+  ViewBag.Title = "QuestionDetails";
 }
 
 <h2>Question Details</h2>
-
 @Model.Question.Post.Title
-@Model.Question.Post.Content
+@Html.Raw(Model.Question.Post.Content)
+@using (Html.BeginForm())
+{
+
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <h3>Contribute your answer: </h3>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+      @Html.LabelFor(m => m.AnswerContent, new { @class = "col-md-2 control-label" })
+      <div class="col-md-10">
+        @Html.TextAreaFor(m => m.AnswerContent, new { @class = "form-control" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        @Html.HiddenFor(m => m.UserId)
+        @Html.HiddenFor(m => m.QuestionId)
+        <input type="submit" value="Contribute now" class="btn btn-outline-primary" />
+      </div>
+    </div>
+  </div>
+}
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval");
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      tinyMCE.init({
+        mode: "textareas",
+      });
+    });
+  </script>
+
+}

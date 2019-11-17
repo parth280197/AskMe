@@ -25,6 +25,9 @@ namespace AskMe.Controllers
         [HttpPost]
         public ActionResult Index(QuestionListViewModel questionListViewModel)
         {
+            if (questionListViewModel.TagsId == null)
+                    return RedirectToAction("Index");
+            
             var tagsId = questionListViewModel.TagsId;
             var questions = QBL.GetQuestionsBySelectedTags(tagsId);
             QuestionListViewModel questionListByTag = new QuestionListViewModel

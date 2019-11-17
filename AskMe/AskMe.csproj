@@ -220,6 +220,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModel\QuestionCreateViewModel.cs" />
     <Compile Include="Models\ViewModel\QuestionDetailViewModel.cs" />
+    <Compile Include="Models\ViewModel\QuestionListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

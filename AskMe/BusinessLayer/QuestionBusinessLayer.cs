@@ -6,63 +6,67 @@ using System.Collections.Generic;
 
 namespace AskMe.BusinessLayer
 {
-  public class QuestionBusinessLayer
-  {
-    QuestionDataAccessLayer QDL = new QuestionDataAccessLayer();
-
-    public List<Question> GetAllQuestions()
+    public class QuestionBusinessLayer
     {
-      return QDL.GetAllQuestions();
-    }
+        QuestionDataAccessLayer QDL = new QuestionDataAccessLayer();
 
-    public List<Tag> GetAllTags()
-    {
-      return QDL.GetAllTags();
-    }
-    public List<Tag> GetSelectedAllTags(int[] selectedId)
-    {
+        public List<Question> GetAllQuestions()
+        {
+            return QDL.GetAllQuestions();
+        }
 
-      return QDL.GetSelectedAllTags(selectedId);
-    }
+        public List<Question> GetQuestionsBySelectedTags(int[] selectedId)
+        {
+            return QDL.GetQuestionsBySelectedTags(selectedId);
+        }
+        public List<Tag> GetAllTags()
+        {
+            return QDL.GetAllTags();
+        }
+        public List<Tag> GetSelectedAllTags(int[] selectedId)
+        {
 
-    public void CreateQuestion(QuestionCreateViewModel questionViewModel)
-    {
-      Post post = new Post()
-      {
-        Content = questionViewModel.Content,
-        Title = questionViewModel.Title,
-        CreatedTime = DateTime.Now,
-        CreatedById = questionViewModel.UserId,
-      };
-      Question question = new Question()
-      {
+            return QDL.GetSelectedAllTags(selectedId);
+        }
 
-        Post = post,
-        Tags = QDL.GetSelectedAllTags(questionViewModel.TagsId),
-      };
-      QDL.CreatePost(post);
-      QDL.CreateQuestion(question);
-    }
-    public void CreateAnswer(QuestionDetailViewModel viewModel)
-    {
-      Post post = new Post()
-      {
-        Content = viewModel.AnswerContent,
-        CreatedTime = DateTime.Now,
-        CreatedById = viewModel.UserId,
-      };
-      Answer answer = new Answer()
-      {
-        Post = post,
-        Question = GetQuestions(viewModel.QuestionId),
-      };
-      QDL.CreatePost(post);
-      QDL.CreateAnswer(answer);
-    }
+        public void CreateQuestion(QuestionCreateViewModel questionViewModel)
+        {
+            Post post = new Post()
+            {
+                Content = questionViewModel.Content,
+                Title = questionViewModel.Title,
+                CreatedTime = DateTime.Now,
+                CreatedById = questionViewModel.UserId,
+            };
+            Question question = new Question()
+            {
 
-    public Question GetQuestions(int id)
-    {
-      return QDL.GetQuestions(id);
+                Post = post,
+                Tags = QDL.GetSelectedAllTags(questionViewModel.TagsId),
+            };
+            QDL.CreatePost(post);
+            QDL.CreateQuestion(question);
+        }
+        public void CreateAnswer(QuestionDetailViewModel viewModel)
+        {
+            Post post = new Post()
+            {
+                Content = viewModel.AnswerContent,
+                CreatedTime = DateTime.Now,
+                CreatedById = viewModel.UserId,
+            };
+            Answer answer = new Answer()
+            {
+                Post = post,
+                Question = GetQuestions(viewModel.QuestionId),
+            };
+            QDL.CreatePost(post);
+            QDL.CreateAnswer(answer);
+        }
+
+        public Question GetQuestions(int id)
+        {
+            return QDL.GetQuestions(id);
+        }
     }
-  }
 }

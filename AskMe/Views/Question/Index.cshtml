@@ -7,22 +7,16 @@
 <h2>Questions</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(new { @class = "form-inline" }))
 {
     @Html.AntiForgeryToken()
-    <div>
-        <div class="col-8 m-1">
-            <div class="form-group">
-                @Html.LabelFor(m => m.TagsId, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.ListBoxFor(m => m.TagsId, new MultiSelectList(Model.Tags, "Id", "Name"), new { @class = "form-control select-multiple", multiple = "multiple" })
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-md-8">
+            @Html.LabelFor(m => m.TagsId,"Search Question by Tags", new { @class = "col-md-6 control-label" })
+            @Html.ListBoxFor(m => m.TagsId, new MultiSelectList(Model.Tags, "Id", "Name"), new { @class = "form-control select-multiple", multiple = "multiple" })
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Search By Tag" class="btn btn-outline-primary" />
-            </div>
+        <div class="col-md-4 col-md-offset-1">
+            <input type="submit" value="Search By Tag" class="btn btn-outline-primary" />
         </div>
     </div>
 }

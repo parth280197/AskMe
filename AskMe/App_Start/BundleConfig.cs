@@ -24,7 +24,8 @@ namespace AskMe
 
       bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.min.css",
-                "~/Content/site.css"));
+                "~/Content/site.css",
+                "~/Content/font-awsome.min.css"));
     }
   }
 }

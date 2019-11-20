@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace AskMe.API
 {
-    public class ViewsController : ApiController
+    public class VotesController : ApiController
     {
         //public IHttpActionResult Post
     }

@@ -12,6 +12,7 @@ namespace AskMe.API
     {
         ApplicationDbContext _context = new ApplicationDbContext();
 
+        [HttpPut]
         public IHttpActionResult UpVote(int postId)
         {
             var user = User.Identity.GetUserId();

@@ -18,13 +18,13 @@
         </div>
         <div id="vote" class="col">
             <div>
-                <a class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                <a data-vote-id="@answer.PostId" class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
             </div>
             <div>
 
             </div>
             <div>
-                <a class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                <a data-vote-id="@answer.PostId" class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -66,7 +66,11 @@
 
             $("#vote .thumbs-up").on("click", function () {
             $.ajax({
-                url:"api/views/"
+                url: "api/votes/" + $(this).attr("ddata-vote-id"),
+                method: "PUT",
+                success: function () {
+                    console.log("success");
+                }
             })
         })
 

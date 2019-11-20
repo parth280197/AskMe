@@ -4,8 +4,8 @@
     ViewBag.Title = "QuestionDetails";
 }
 
-<h2>Question Details: </h2>
-<h2>@Model.Question.Post.Title</h2>
+<h1>Question Details: </h1>
+<h3>@Model.Question.Post.Title</h3>
 @Html.Raw(Model.Question.Post.Content)
 <hr />
 <h3>Answers:</h3>
@@ -15,6 +15,17 @@
         <div class="card-body">
             <h5 class="card-title">Answered by: @answer.Post.CreatedBy.UserName</h5>
             @Html.Raw(answer.Post.Content)
+        </div>
+        <div id="vote" class="col">
+            <div>
+                <a class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+            </div>
+            <div>
+
+            </div>
+            <div>
+                <a class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+            </div>
         </div>
     </div>
 }
@@ -52,6 +63,13 @@
             tinyMCE.init({
                 mode: "textareas",
             });
+
+            $("#vote .thumbs-up").on("click", function () {
+            $.ajax({
+                url:"api/views/"
+            })
+        })
+
         });
     </script>
 

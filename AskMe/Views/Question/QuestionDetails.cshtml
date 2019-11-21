@@ -21,7 +21,7 @@
                 <button data-vote-id="@answer.Post.PostId" class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
             </div>
             <div>
-
+                @Model.VoteCount
             </div>
             <div>
                 <button data-vote-id="@answer.Post.PostId" class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
@@ -71,11 +71,11 @@
                 method: "POST",
                 success: function () {
                     console.log("success");
+ 
                 }
             })
         })
 
         });
     </script>
-
 }

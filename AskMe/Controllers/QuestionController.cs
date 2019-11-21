@@ -16,7 +16,8 @@ namespace AskMe.Controllers
             QuestionListViewModel questionListViewModel = new QuestionListViewModel
             {
                 Questions = QBL.GetAllQuestions(),
-                Tags=QBL.GetAllTags()
+                Tags=QBL.GetAllTags(),
+                CurrentUserId = User.Identity.GetUserId(),
             };
 
             return View(questionListViewModel);
@@ -34,6 +35,7 @@ namespace AskMe.Controllers
             {
                 Questions = questions,
                 Tags = QBL.GetAllTags(),
+                CurrentUserId = User.Identity.GetUserId(),
             };
             return View(questionListByTag);
         }

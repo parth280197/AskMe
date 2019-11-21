@@ -37,19 +37,20 @@
                     </p>
                     <p class="card-text"><small class="text-muted">Asked on: @item.Post.CreatedTime</small></p>
                 </div>
-                <div class="col">
+                <div id="vote" class="col">
                     <div>
-                        <a class="nav-link" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                        <a data-vote-id=""class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
                     </div>
                     <div>
                         
                     </div>
                     <div>
-                        <a class="nav-link" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                        <a class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
         </div>
+        @Html.HiddenFor(m=>m.CurrentUserId)
     </div>
 }
 <div class="row">
@@ -63,6 +64,12 @@
         $(".select-multiple").select2({
             tags: true,
         });
+
+        $("#vote .thumbs-up").on("click", function () {
+            $.ajax({
+                url:"api/views/"
+            })
+        })
         //$('#example').buzinaPagination({
         //  itemsOnPage: 5,
         //  prevnext: true,

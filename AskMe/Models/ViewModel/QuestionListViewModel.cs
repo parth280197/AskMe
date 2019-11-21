@@ -10,5 +10,6 @@ namespace AskMe.Models.ViewModel
         public List<Question> Questions { get; set; }
         public List<Tag> Tags { get; set; }
         public int[] TagsId { get; set; }
+        public string CurrentUserId { get; set; }
     }
 }

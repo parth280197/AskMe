@@ -18,13 +18,13 @@
         </div>
         <div id="vote" class="col">
             <div>
-                <a data-vote-id="@answer.PostId" class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                <button data-vote-id="@answer.Post.PostId" class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
             </div>
             <div>
 
             </div>
             <div>
-                <a data-vote-id="@answer.PostId" class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                <button data-vote-id="@answer.Post.PostId" class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>
@@ -64,10 +64,11 @@
                 mode: "textareas",
             });
 
-            $("#vote .thumbs-up").on("click", function () {
-            $.ajax({
-                url: "api/votes/" + $(this).attr("ddata-vote-id"),
-                method: "PUT",
+            $("#vote").on("click",".thumbs-up", function () {
+                console.log("in selection func");
+                $.ajax({                   
+                url: "/api/votes/upvote/" + $(this).attr("data-vote-id"),
+                method: "POST",
                 success: function () {
                     console.log("success");
                 }

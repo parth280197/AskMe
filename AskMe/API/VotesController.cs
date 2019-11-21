@@ -1,4 +1,5 @@
 ﻿using AskMe.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +13,27 @@ namespace AskMe.API
     {
         ApplicationDbContext _context = new ApplicationDbContext();
 
-        [HttpPut]
-        public IHttpActionResult UpVote(int postId)
+        [HttpPost]
+        public IHttpActionResult UpVote(int id)
         {
-            var user = User.Identity.GetUserId();
-            var post = _context.Posts.Find(postId);
+            var user = _context.Users.Find(User.Identity.GetUserId());
+            var post = _context.Posts.Find(id);
             var votes = post.Votes.ToList();
-            if (votes.FindAll(u => u.UserId == userId).Count == 0)
+            if (votes.FindAll(u => u.UserId == user.Id).Count == 0)
             {
                 Votes vote = new Votes
                 {
                     VotedDateTime = DateTime.Now,
-                    UserId = userId,
+                    UserId = user.Id,
                     User = user,
                     Post = post,
-                    PostId = postId,
+                    PostId = id,
                 };
                 post.Votes.Add(vote);
                 _context.SaveChanges();
                 return Ok();
             }
+            return BadRequest();
         }
     }
 }

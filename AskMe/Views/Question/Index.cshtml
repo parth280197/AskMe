@@ -21,67 +21,68 @@
     </div>
 }
 
-
-@foreach (var item in Model.Questions)
-{
+<div id="example">
+  @foreach (var item in Model.Questions)
+  {
     <div class="card bg-light m-1">
-        <div class="card-body">
-            <h5 class="card-title">@Html.ActionLink(item.Post.Title, "QuestionDetails", new { Id = item.PostId })</h5>
-            <div class="row">
-                <div class="col-md-11">
-                    <p class="card-text">
-                        @foreach (var tag in item.Tags)
-                        {
-                            <span class="badge badge-secondary">@tag.Name</span>
-                        }
-                    </p>
-                    <p class="card-text"><small class="text-muted">Asked on: @item.Post.CreatedTime</small></p>
-                </div>
-                <div id="vote" class="col">
-                    <div>
-                        <a data-vote-id=""class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
-                    </div>
-                    <div>
-                        
-                    </div>
-                    <div>
-                        <a class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
-                    </div>
-                </div>
+      <div class="card-body">
+        <h5 class="card-title">@Html.ActionLink(item.Post.Title, "QuestionDetails", new { Id = item.PostId })</h5>
+        <div class="row">
+          <div class="col-md-11">
+            <p class="card-text">
+              @foreach (var tag in item.Tags)
+              {
+                <span class="badge badge-secondary">@tag.Name</span>
+              }
+            </p>
+            <p class="card-text"><small class="text-muted">Asked on: @item.Post.CreatedTime</small></p>
+          </div>
+          <div id="vote" class="col">
+            <div>
+              <a data-vote-id="" class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
             </div>
+            <div>
+
+            </div>
+            <div>
+              <a class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+            </div>
+          </div>
         </div>
-        @Html.HiddenFor(m=>m.CurrentUserId)
+      </div>
+      @Html.HiddenFor(m => m.CurrentUserId)
     </div>
-}
-<div class="row">
+  }
+</div>
+  <div class="row">
     <div class="col"></div>
     <div class="col text-center mt-3">@Html.ActionLink("AskMe Something!", "CreateQuestion", "Question", null, new { @class = "btn btn-outline-primary" })</div>
     <div class="col"></div>
-</div>
+  </div>
 
-<script type="text/javascript">
+  <script type="text/javascript">
     $(document).ready(function () {
-        $(".select-multiple").select2({
-            tags: true,
-        });
+      $(".select-multiple").select2({
+        tags: true,
+      });
 
-        $("#vote .thumbs-up").on("click", function () {
-            $.ajax({
-                url:"api/views/"
-            })
+      $("#vote .thumbs-up").on("click", function () {
+        $.ajax({
+          url: "api/views/"
         })
-        //$('#example').buzinaPagination({
-        //  itemsOnPage: 5,
-        //  prevnext: true,
-        //  prevText: "Previous",
-        //  nextText: "Next"
-        //});
-        //tinyMCE.init({
-        //    // General options
-        //    mode: "textareas",
-        //    // Theme options
-        //    // Example content CSS (should be your site CSS)
-        //});
+      })
+      $('#example').buzinaPagination({
+        itemsOnPage: 5,
+        prevnext: true,
+        prevText: "Previous",
+        nextText: "Next"
+      });
+      //tinyMCE.init({
+      //    // General options
+      //    mode: "textareas",
+      //    // Theme options
+      //    // Example content CSS (should be your site CSS)
+      //});
     });
-</script>
+  </script>
 

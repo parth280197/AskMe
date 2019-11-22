@@ -26,6 +26,12 @@ namespace AskMe
                 "~/Content/bootstrap.min.css",
                 "~/Content/site.css",
                 "~/Content/font-awsome.min.css"));
+
+      bundles.Add(new ScriptBundle("~/bundles/pagination").Include(
+                "~/Pagination/buzina-pagination.min.js"));
+
+      bundles.Add(new StyleBundle("~/Content/pagination").Include(
+                "~/Pagination/buzina-pagination.min.css"));
     }
   }
 }

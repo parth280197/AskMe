@@ -90,7 +90,7 @@ namespace AskMe.Controllers
       {
         db.Entry(comment).State = EntityState.Modified;
         db.SaveChanges();
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", new { answerId = comment.AnswerId });
       }
       ViewBag.AnswerId = new SelectList(db.Answers, "PostId", "PostId", comment.AnswerId);
       return View(comment);
@@ -119,7 +119,7 @@ namespace AskMe.Controllers
       Comment comment = db.Comments.Find(id);
       db.Comments.Remove(comment);
       db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", new { answerId = comment.AnswerId });
     }
 
     protected override void Dispose(bool disposing)

@@ -21,7 +21,7 @@
     </div>
 }
 
-<div id="example">
+<div id="paginationContainer">
   @foreach (var item in Model.Questions)
   {
     <div class="card bg-light m-1">
@@ -71,18 +71,12 @@
           url: "api/views/"
         })
       })
-      $('#example').buzinaPagination({
+      $('#paginationContainer').buzinaPagination({
         itemsOnPage: 5,
         prevnext: true,
         prevText: "Previous",
         nextText: "Next"
       });
-      //tinyMCE.init({
-      //    // General options
-      //    mode: "textareas",
-      //    // Theme options
-      //    // Example content CSS (should be your site CSS)
-      //});
     });
   </script>
 

@@ -9,27 +9,29 @@
 @Html.Raw(Model.Question.Post.Content)
 <hr />
 <h3>Answers:</h3>
-@foreach (var answer in Model.Question.Answers)
-{
-<div class="card bg-light m-1">
-  <div class="card-body">
-    <h5 class="card-title">Answered by: @answer.Post.CreatedBy.UserName</h5>
-    @Html.Raw(answer.Post.Content)
-  </div>
-  <div id="vote" class="col">
-    <div>
-      <button data-vote-id="@answer.Post.PostId" class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+<div id="paginationContainer">
+  @foreach (var answer in Model.Question.Answers)
+  {
+    <div class="card bg-light m-1">
+      <div class="card-body">
+        <h5 class="card-title">Answered by: @answer.Post.CreatedBy.UserName</h5>
+        @Html.Raw(answer.Post.Content)
+      </div>
+      <div id="vote" class="col">
+        <div>
+          <button data-vote-id="@answer.Post.PostId" class="nav-link thumbs-up" href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+        </div>
+        <div id="Count">
+          @Model.VoteCount
+        </div>
+        <div>
+          <button data-vote-id="@answer.Post.PostId" class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      @Html.ActionLink("View Comments", "Index", "Comments", new { answerId = answer.PostId }, null) |
     </div>
-    <div id="Count">
-      @Model.VoteCount
-    </div>
-    <div>
-      <button data-vote-id="@answer.Post.PostId" class="nav-link thumbs-down" href=""><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
-    </div>
-  </div>
-  @Html.ActionLink("View Comments", "Index","Comments", new { answerId = answer.PostId },null) |
+  }
 </div>
-}
 @using (Html.BeginForm())
 {
 
@@ -64,6 +66,12 @@
       tinyMCE.init({
         mode: "textareas",
       });
+      $('#paginationContainer').buzinaPagination({
+        itemsOnPage: 3,
+        prevnext: true,
+        prevText: "Previous",
+        nextText: "Next"
+      });
 
       $("#vote").on("click", ".thumbs-up", function () {
 
@@ -80,8 +88,7 @@
         })
       })
 
-
-    $("#vote").on("click", ".thumbs-down", function () {
+      $("#vote").on("click", ".thumbs-down", function () {
 
         $.ajax({
           url: "/api/votes/downvote/" + $(this).attr("data-vote-id"),
@@ -90,7 +97,7 @@
             var countTxt = $("#Count").text();
             console.log(countTxt);
             var count = parseInt(countTxt);
-            $("#Count").text(count -1);
+            $("#Count").text(count - 1);
             console.log(count);
           }
         })

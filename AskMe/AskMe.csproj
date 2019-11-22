@@ -197,6 +197,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\SeedingHelper.cs" />
     <Compile Include="Migrations\201911111819201_PostTableCreated.cs" />
     <Compile Include="Migrations\201911111819201_PostTableCreated.Designer.cs">

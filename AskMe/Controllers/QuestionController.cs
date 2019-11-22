@@ -1,4 +1,5 @@
 ﻿using AskMe.BusinessLayer;
+using AskMe.Helper;
 using AskMe.Models.ViewModel;
 using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
@@ -9,7 +10,7 @@ namespace AskMe.Controllers
   public class QuestionController : Controller
   {
     QuestionBusinessLayer QBL = new QuestionBusinessLayer();
-
+    EmailHelper emailHelper = new EmailHelper();
     // GET: Question
     public ActionResult Index()
     {
@@ -73,6 +74,7 @@ namespace AskMe.Controllers
     public ActionResult QuestionDetails(QuestionDetailViewModel questionDetailViewModel)
     {
       QBL.CreateAnswer(questionDetailViewModel);
+      emailHelper.notifyQuestionOwner(questionDetailViewModel);
       return RedirectToAction("QuestionDetails", new { Id = questionDetailViewModel.QuestionId });
     }
   }

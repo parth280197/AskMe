@@ -12,9 +12,10 @@ namespace AskMe.Controllers
     private ApplicationDbContext db = new ApplicationDbContext();
 
     // GET: Comments
-    public ActionResult Index()
+    public ActionResult Index(int answerId)
     {
-      var comments = db.Comments.Include(c => c.Answer);
+      ViewBag.AnswerId = answerId;
+      var comments = db.Comments.Include(c => c.Answer).Where(c => c.AnswerId == answerId);
       return View(comments.ToList());
     }
 
@@ -34,10 +35,14 @@ namespace AskMe.Controllers
     }
 
     // GET: Comments/Create
-    public ActionResult Create()
+    public ActionResult Create(int id)
     {
+      var comment = new Comment()
+      {
+        AnswerId = id
+      };
       ViewBag.AnswerId = new SelectList(db.Answers, "PostId", "PostId");
-      return View();
+      return View(comment);
     }
 
     // POST: Comments/Create
@@ -51,7 +56,7 @@ namespace AskMe.Controllers
       {
         db.Comments.Add(comment);
         db.SaveChanges();
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", new { answerId = comment.AnswerId });
       }
 
       ViewBag.AnswerId = new SelectList(db.Answers, "PostId", "PostId", comment.AnswerId);

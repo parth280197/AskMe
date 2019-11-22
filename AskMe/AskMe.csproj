@@ -187,6 +187,7 @@
     <Compile Include="BusinessLayer\QuestionBusinessLayer.cs" />
     <Compile Include="BusinessLayer\UserBusinessLayer.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
@@ -472,6 +473,11 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Question\Index.cshtml" />
     <Content Include="Views\Question\QuestionDetails.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

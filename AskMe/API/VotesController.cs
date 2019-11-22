@@ -6,6 +6,7 @@ using System.Web.Http;
 
 namespace AskMe.API
 {
+  [Authorize]
   public class VotesController : ApiController
   {
     ApplicationDbContext _context = new ApplicationDbContext();
